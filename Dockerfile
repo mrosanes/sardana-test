@@ -107,3 +107,13 @@ ENV DISPLAY=:1.0
 
 # start supervisor as deamon
 CMD /usr/bin/supervisord
+
+# Install Sardana
+RUN pip3 install git+https://github.com/sardana-org/sardana.git@develop
+
+# Install Sardana Macro for MARTe configuration files creation
+RUN git clone https://github.com/mrosanes/marte_macros
+
+# Add a PYTHONPATH to MARTe Macros Library
+ENV PYTHONPATH=/marte_macros/macros_lib:$PYTHONPATH
+
